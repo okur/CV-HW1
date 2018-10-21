@@ -29,6 +29,17 @@ def calculate_histogram(image):
                 histogram[intensity, z] += 1 
     return histogram
 
+
+def plot_histogram(histogram, title):
+    x = range(256)
+    plt.subplot(311)
+    plt.bar(x, histogram[:,0],color='r' )
+    plt.subplot(312)
+    plt.bar(x, histogram[:,1],color='g' )
+    plt.subplot(313)
+    plt.bar(x, histogram[:,2],color='b' )
+    plt.show()
+    
 class PlotCanvas(FigureCanvas):
     def __init__(self, histogram, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
@@ -51,14 +62,6 @@ class PlotCanvas(FigureCanvas):
         self.draw()
         
         
-path = 'color1.png'
-image = read_image(path)
-histogram = calculate_histogram(image)
-#canvas = PlotCanvas(histogram)
-x = range(256)
-a,b,c = plt.subplot(3,1)
-a.bar(x, histogram[:,0],color='r' )
-b.bar(x, histogram[:,1],color='g' )
-c.bar(x, histogram[:,2],color='b' )
-plt.show()
+
+
 
