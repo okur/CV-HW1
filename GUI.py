@@ -59,6 +59,7 @@ class appWindow(QMainWindow):
         histogram_input = histogram.calculate_histogram(image)
         title = 'input image'
         histogram.plot_histogram(histogram_input, title)
+
     
     def openTargetImage(self):
         imagePath, _ = QFileDialog.getOpenFileName()
@@ -69,8 +70,7 @@ class appWindow(QMainWindow):
         
     def equalizeHistogram(self):
         print('...')
-    
-    
+   
     def setWidget(self, widget):     
         widgetLayout = QGridLayout(widget)
         
@@ -99,7 +99,6 @@ class appWindow(QMainWindow):
         
         box3 = QGroupBox(widget)
         box3.setTitle('Result')
-        
         vbox3 = QVBoxLayout(box3)
         label31 = QLabel()
         label32 = QLabel()
