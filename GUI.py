@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Oct 14 17:52:37 2018
-
 @author: okur
 """
 
@@ -56,16 +55,22 @@ class appWindow(QMainWindow):
     
     def openInputImage(self):
         imagePath, _ = QFileDialog.getOpenFileName()
-        histogram.read_image(imagePath)
+        image = histogram.read_image(imagePath)
+        histogram_input = histogram.calculate_histogram(image)
+        title = 'input image'
+        histogram.plot_histogram(histogram_input, title)
+
     
     def openTargetImage(self):
         imagePath, _ = QFileDialog.getOpenFileName()
         image = histogram.read_image(imagePath)
+        histogram_output = histogram.calculate_histogram(image)
+        title = 'target image'
+        histogram.plot_histogram(histogram_output, title)
         
     def equalizeHistogram(self):
-        print('abdullah')
-    
-    
+        print('...')
+   
     def setWidget(self, widget):     
         widgetLayout = QGridLayout(widget)
         
@@ -74,9 +79,7 @@ class appWindow(QMainWindow):
         
         vbox1 = QVBoxLayout(box1)
         label11 = QLabel()
-        label11.setPixmap(QPixmap(self.inputImage))
         label12 = QLabel()
-        label12.setPixmap(QPixmap("redrock.png"))
         vbox1.addWidget(label11)
         vbox1.addWidget(label12)
         vbox1.addStretch()
@@ -87,9 +90,7 @@ class appWindow(QMainWindow):
         
         vbox2 = QVBoxLayout(box2)
         label21 = QLabel()
-        label21.setPixmap(QPixmap(self.targetImage))
         label22 = QLabel()
-        label22.setPixmap(QPixmap("redrock.png"))
         vbox2.addWidget(label21)
         vbox2.addWidget(label22)
         vbox2.addStretch()
@@ -98,12 +99,9 @@ class appWindow(QMainWindow):
         
         box3 = QGroupBox(widget)
         box3.setTitle('Result')
-        
         vbox3 = QVBoxLayout(box3)
         label31 = QLabel()
-        label31.setPixmap(QPixmap("redrock.png"))
         label32 = QLabel()
-        label32.setPixmap(QPixmap("redrock.png"))
         vbox3.addWidget(label31)
         vbox3.addWidget(label32)
         vbox3.addStretch()
@@ -118,5 +116,3 @@ class appWindow(QMainWindow):
 app = QApplication(sys.argv)
 application = appWindow()
 sys.exit(app.exec_())
-
-
